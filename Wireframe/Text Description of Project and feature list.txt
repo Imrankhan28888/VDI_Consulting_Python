@@ -1,0 +1,10 @@
+Project Name: VDI Consulting Services - The website will be used for customers those need consulting services related to VDI (Virtual Desktop Enviornment)
+
+Features:
+1. Website backend will be creaed using (Python)Django framework
+
+2. Website front end will be created using HTML/CSS/JS and bootstrap framework
+
+3. Website will allow users to create users account and place orders
+
+4. Once order is placed, users will get email confirmation about the order placed
