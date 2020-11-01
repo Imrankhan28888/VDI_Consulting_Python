@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'VDI_Consulting_App',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

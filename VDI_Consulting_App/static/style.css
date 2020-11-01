@@ -1,0 +1,82 @@
+body {
+    font-family: "Georgia", serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Martel";
+}
+
+h2 {
+    color: navy;
+}
+
+h5 {
+    color: white;
+}
+
+.site-footer {
+    background-image: linear-gradient( #4DBEFF, black);
+    padding: 20px 0px;
+}
+
+.site-footer h5{
+    color: black;
+}
+
+.site-footer a {
+    color: white;
+}
+
+.jumbotron {
+    padding: 30px;
+    background-image: linear-gradient(to right,black, #4DBEFF);
+    margin: 0px;
+}
+
+.jumbotron h1, .jumbotron h2 {
+    color: white;
+}
+
+.row-content {
+    padding: 50px 0;
+    border-bottom: 1px ridge;
+    min-height: 200px;
+}
+
+.navbar {
+    background-image: linear-gradient(to right, black, #BBBBBB);
+}
+
+.quoteModalHeader {
+    background-image: linear-gradient(to right, black, #4DBEFF);
+}
+
+.carousel {
+    border: solid black;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+h4 {
+    color: white;
+}
+
+.card h4 {
+    color: black;
+}
+
+.thead {
+    background-image: linear-gradient(to right,black, #4DBEFF);
+}
+
+.quoteButtons {
+    background-color: #4DBEFF;
+    border-color: black;
+}
+
+.quoteButtons2 {
+    background-color: #BBBBBB;
+    border-color: black;
+}
