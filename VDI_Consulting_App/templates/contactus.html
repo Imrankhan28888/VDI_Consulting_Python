@@ -35,9 +35,112 @@
                     <h1>IT Consulting</h1>
                     <h2>Cloud and VDI Consulting Services</h2>
                 </div>
+                <!-- Get a Quote button -->
+                <div class="col-md-2 align-self-top">
+                    <button data-toggle="modal" data-target="#getQuoteModal" role="button" class="btn btn-dark btn-lg"> Get a Quote </button> 
+                </div>
+                <div id="a1">
+                <a role="button" class="btn btn-google btn-lg" href="regpage">Login</a>
+               </div>
             </div>
         </div>
     </header>
+
+    <div id="errors">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <!-- Get a Quote modal -->
+    <div id="getQuoteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header quoteModalHeader">
+                    <h3 class="text-white"> Get a Quote </h3>
+                    <button type="button" class="close text-white" data-dismiss="modal"> &times; </button>
+                </div>
+                <div class="modal-body"> 
+                    <div class="container-fluid">
+                        <form action="/inquiry" method="post">
+                            {% csrf_token %}
+                            <!-- Basic Info -->
+                            <div class="form-group row">
+                                <label for="companyName" class="col-sm-6 col-form-label"> Company Name </label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Company Name" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="projectName" class="col-sm-6 col-form-label"> Project Name </label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="projectName" name="projectName" placeholder="Project Name" />
+                                </div>
+                            </div>
+                            <!-- email -->
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-6 col-form-label"> Email</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" />
+                                </div>
+                            </div>
+                            <!-- Date -->
+                            <div class="form-group row">
+                                <label for="date" class="col-sm-6 col-form-label"> Project Start Date </label>
+                                <div class="col-sm-6">
+                                    <input type="date" id="date" name="date" class="form-control" placeholder="Date">
+                                </div>
+                            </div>
+                            <!-- Project Length -->
+                            <div class="form-group row">
+                                <label for="projectLength" class="col-sm-6 col-form-label"> Project Length </label>
+                                <div class="col">
+                                    <select class="form-control" id="projectLength">
+                                        <option value="Select.."> Select... </option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="3"> 3 </option>
+                                        <option value="4"> 4 </option>
+                                        <option value="5"> 5 </option>
+                                        <option value="6"> 6 </option>
+                                        <option value="6"> 7 </option>
+                                        <option value="6"> 8 </option>
+                                        <option value="6"> 9 </option>
+                                    </select>
+                                </div>
+                                <div class="col btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn quoteButtons2">
+                                        <input type="radio" name="projectLength" id="projectLength" autocomplete="off" checked> Weeks
+                                    </label>
+                                    <label class="btn quoteButtons2">
+                                        <input type="radio" name="projectLength" id="projectLength" autocomplete="off" checked> Months
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Description -->
+                            <div class="form-group row">
+                                <label for="description" class="col-sm-3 col-form-label"> Project Description </label>
+                                <div class="col-sm-9">
+                                    <textarea name="description" class="form-control" id="description" rows="8"> </textarea>
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="form-group row justify-content-end">
+                                <div class="col col-lg-3">
+                                    <button type="button" data-dismiss="modal" class="btn btn-dark"> Cancel </button>
+                                    <button type="submit" class="btn quoteButtons"> Submit </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
 
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
         <div class="container">

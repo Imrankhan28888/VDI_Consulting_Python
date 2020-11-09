@@ -31,6 +31,7 @@ h5 {
     padding: 30px;
     background-image: linear-gradient(to right,black, #4DBEFF);
     margin: 0px;
+
 }
 
 .jumbotron h1, .jumbotron h2 {
@@ -79,4 +80,56 @@ h4 {
 .quoteButtons2 {
     background-color: #BBBBBB;
     border-color: black;
+}
+
+#a1 {
+
+    height: 30px;
+
+}
+
+/* #reg {
+    
+    
+    margin-left: 30%;
+    margin-right: 30%
+
+} */
+
+#reg {
+
+    width: 300px;
+    margin-left: 25%;
+    display: inline-block;
+    vertical-align: top;
+    
+  
+  }
+  
+  #login {
+  
+      width: 300px;
+      margin-top: 50px;
+      margin-left: 25%;
+      display: inline-block;
+     
+     
+  }
+  #errors
+  {
+  text-align: center;
+  color: red;
+  
+  }
+
+  li {
+    list-style: none;
+    }
+
+#username h3{
+    
+    margin-left: 10px;
+    padding: 20px;
+    height: 30px;
+    color: white;   
 }
