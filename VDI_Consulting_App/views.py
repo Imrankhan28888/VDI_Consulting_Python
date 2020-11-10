@@ -84,6 +84,7 @@ def orders(request):
     user = User.objects.get(id=request.session['user_id'])
     context = {
         'user': user,
+        "all_products": Product.objects.all()
     }
     return render(request, 'orders.html', context)
 
@@ -116,5 +117,8 @@ def checkout(request):
         'total':full_price,
         'bill':price,
     }
-    return render(request, "store/checkout.html",context)
+    return render(request, "checkout.html",context)
+
+
+
 

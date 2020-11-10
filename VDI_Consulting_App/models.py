@@ -105,3 +105,12 @@ class Order(models.Model):
     total_price = models.DecimalField(decimal_places=2, max_digits=6)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+# class cart(models.Model):
+#     user = models.OneToOneField(User, related_name="user_uploaded_cart",on_delete=models.CASCADE)
+#     product = models.ManyToManyField(Product,related_name="products_added_carts",on_delete=models.CASCADE)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+
+  
