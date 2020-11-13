@@ -107,10 +107,22 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# class cart(models.Model):
-#     user = models.OneToOneField(User, related_name="user_uploaded_cart",on_delete=models.CASCADE)
-#     product = models.ManyToManyField(Product,related_name="products_added_carts",on_delete=models.CASCADE)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
+class cart(models.Model):
+    user = models.OneToOneField(User, related_name="user_uploaded_cart",on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product,related_name="products_added_carts")
+    quantity = models.IntegerField(default=0)
+    total_price = models.DecimalField(decimal_places=2, max_digits=5)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class OrderItem(models.Model):
+    Cart = models.ForeignKey(cart, related_name="order_items", on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name="order_product", on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    item_cost =  models.DecimalField(decimal_places=2, max_digits=5)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
   

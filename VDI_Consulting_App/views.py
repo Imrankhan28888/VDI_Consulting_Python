@@ -49,7 +49,9 @@ def register(request):
         return redirect('/regpage')
     else:
         new_user = User.objects.register(request.POST)
+        new_cart = cart.objects.create(user = new_user)
         request.session['user_id'] = new_user.id
+        request.session['cart_id'] = new_cart.id
         return redirect('/orders')
 
 
@@ -59,8 +61,10 @@ def login(request):
     if not User.objects.authenticate(request.POST['email'], request.POST['password']):
         messages.error(request, 'Invalid Email/Password')
         return redirect('/')
-    user = User.objects.get(email=request.POST['email'])
-    request.session['user_id'] = user.id
+    user1 = User.objects.get(email=request.POST['email'])
+    cart1 = cart.objects.get(user=user1)
+    request.session['user_id'] = user1.id
+    request.session['cart_id'] = cart1.id
     return redirect('/orders')
 
 def logout(request):
@@ -81,12 +85,52 @@ def inquiry(request):
 
 
 def orders(request):
-    user = User.objects.get(id=request.session['user_id'])
+    user1 = User.objects.get(id=request.session['user_id'])
+    cart1 = cart.objects.get(id=request.session['cart_id'])
+    full_price = cart1.total_price
+    cart1_quantity = cart1.quantity
     context = {
-        'user': user,
-        "all_products": Product.objects.all()
+        'user': user1,
+        "user_cart": cart1,
+        "all_products": Product.objects.all(),
+        "total_price": full_price,
+        "cart1_quantity": cart1_quantity,
+        
     }
     return render(request, 'orders.html', context)
+
+def cartadd(request, product_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    if request.method == 'POST':
+        user = User.objects.get(id=request.session['user_id'])
+        cart1 = cart.objects.get(id=request.session['cart_id'])
+        product = Product.objects.get(id=product_id)
+        check_product_exists = cart1.product.filter(id=product_id)
+        if check_product_exists:
+             return redirect('/orders')
+        else:
+            product.products_added_carts.add(cart1)
+            cart1.total_price = cart1.total_price + product.price
+            # cart1.quantity = (request.POST["hours"])
+            cart1.quantity = cart1.quantity + 1
+            # cart1.save()
+            cart1.save()
+            
+    return redirect('/orders')
+    
+def cartdelete(request, item_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id'])
+    cart1 = cart.objects.get(id=request.session['cart_id'])
+    product = Product.objects.get(id=item_id)
+    product.products_added_carts.remove(cart1)
+    cart1.total_price = cart1.total_price - product.price
+    cart1.quantity = cart1.quantity - 1
+    cart1.save()
+    return redirect('/orders')
+    
 
 
 
