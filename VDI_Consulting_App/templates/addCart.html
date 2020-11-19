@@ -1,0 +1,48 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="container" id="testing2">
+            <h2>CART</h2>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Amount</th>
+                        <!-- <th>Hours</th> -->
+                        <th>Remove Item</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in user_cart.product.all %}
+                    <tr> 
+                        <form action="/purchase" method="post">
+                        <!-- <form action="/purchase" method="post"></form> -->
+                            {% csrf_token %}
+                            <td>{{item.description}}</td>
+                            <td><input type="hidden" name="price">{{item.price}}</td>
+                            <!-- <td><input type="hidden" name="hours">{{cart1_quantity}}</td> -->
+                            <td><a href="/delete/{{ item.id }}">Delete</a></td>
+                            <!-- <td><select name="quantity">
+                                <option value="0">0</option>              
+                                </select></td> -->
+                            <!-- <td><input type="submit" value="DELETE"></td> -->
+                        </form>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="total">
+                <h3 id="chosen1">Total Price: {{total_price}}</h3>
+                <h3 id="chosen2">Total Items: {{cart1_quantity}}</h3>
+            </div>
+        </div>
+    
+    
+    </body>
+    </html>

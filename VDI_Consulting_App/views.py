@@ -103,7 +103,7 @@ def cartadd(request, product_id):
     if 'user_id' not in request.session:
         return redirect('/')
     if request.method == 'POST':
-        user = User.objects.get(id=request.session['user_id'])
+        user1 = User.objects.get(id=request.session['user_id'])
         cart1 = cart.objects.get(id=request.session['cart_id'])
         product = Product.objects.get(id=product_id)
         check_product_exists = cart1.product.filter(id=product_id)
@@ -114,10 +114,21 @@ def cartadd(request, product_id):
             cart1.total_price = cart1.total_price + product.price
             # cart1.quantity = (request.POST["hours"])
             cart1.quantity = cart1.quantity + 1
-            # cart1.save()
             cart1.save()
-            
-    return redirect('/orders')
+            cart1_quantity = cart1.quantity 
+            cart1_total_price = cart1.total_price
+
+    context = {
+        'user': user1,
+        "user_cart": cart1,
+        "all_products": Product.objects.all(),
+        "total_price": cart1_total_price,
+        "cart1_quantity": cart1_quantity,
+    }
+    return render(request, 'addCart.html', context)             
+    
+    # return HttpResponse(f'{cart1_quantity} {cart1_total_price}')
+    # return redirect('/orders')
     
 def cartdelete(request, item_id):
     if 'user_id' not in request.session:
